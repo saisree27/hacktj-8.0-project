@@ -1,1 +1,7 @@
+.vscode/
+.env
+
 dataset
+
+# Python 
+__pycache__
