@@ -19,6 +19,6 @@ from . import views
 
 urlpatterns = [
     # path('', views.index, name='index'),
-    path('music/', include('music.urls')),
+    path('', include('music.urls')),
     path('admin/', admin.site.urls),
 ]
