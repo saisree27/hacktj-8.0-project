@@ -27,10 +27,20 @@ def genre(request):
     return render(request, 'music/genre.html', {'form': form})
 
 def generation(request):
+    if request.method == 'POST':
+        genre = request.POST.get('genre')
+        print(genre)
+        audiofile = generate_music(genre)
+        return HttpResponse(audiofile)
     return render(request, 'music/generation.html')
 
 def process_file_upload(file):
     print(file.read())
+
+def generate_music(genre):
+    # switch cases
+    audiofile = "woooooooooooooooo"
+    return audiofile
 
 
 # def upload_file(request):

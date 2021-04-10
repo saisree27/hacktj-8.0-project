@@ -1,4 +1,4 @@
-{% extends 'music/base.html' %}
+{% include 'music/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -6,11 +6,102 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/generation.css' %}">
 </head>
 
 <body>
     {% block content %}
-    <p>generation page</p>
+    <div class="container-fluid wrapper">
+        <div class="row justify-content-center">
+            <h1>Generate Music</h1>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="blues"
+                    value="blues">Blues</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="classical"
+                    value="classical">Classical</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="country"
+                    value="country">Country</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="disco"
+                    value="disco">Disco</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="hiphop" value="hiphop">Hip
+                    Hop</button>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-3">
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="jazz"
+                    value="jazz">Jazz</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="metal"
+                    value="metal">Metal</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="pop" value="pop">Pop</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="reggae"
+                    value="reggae">Reggae</button>
+            </div>
+            <div class="col-sm-1">
+                <button class="btn btn-dark btn-block btn-lg" onclick="buttonValue()" id="rock"
+                    value="rock">Rock</button>
+            </div>
+        </div>
+
+        <form action="{% url 'generation' %}" method="post">
+            {% csrf_token %}
+            <!-- submit here -->
+            <div class="form-group row justify-content-center mt-3">
+                <button class="btn btn-success btn-lg" id="submitButton" type="button">Submit</button>
+            </div>
+        </form>
+
+        <script>
+            var focusedGenre = '';
+            function buttonValue() {
+                focusedGenre = document.activeElement.value;
+                console.log(focusedGenre);
+            }
+
+            var token = '{{csrf_token}}';
+            $(document).ready(function () {
+                $('#submitButton').click(function (event) {
+                    $.ajax({
+                        headers: { "X-CSRFToken": token },
+                        url: "{% url 'generation' %}",
+                        method: 'POST',
+                        data: {
+                            'genre': focusedGenre
+                        },
+                        success: function (response) {
+                            console.log(response)
+                        },
+                        error: function (response) {
+                            console.log(response)
+                        }
+                    });
+                    return false;
+                });
+            });
+
+        </script>
+
+    </div>
+
+
     {% endblock %}
 </body>
 
