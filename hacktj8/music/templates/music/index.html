@@ -1,5 +1,5 @@
+{% extends 'music/base.html' %}
 {% load static %}
-{% include 'music/base.html' %}
 
 <!DOCTYPE html>
 
@@ -10,5 +10,9 @@
 </head>
 
 <body>
-    <p>Best project ever</p>
+  {% block content %}
+  <p>Best project ever</p>
+  {% endblock %}
 </body>
+
+</html>
