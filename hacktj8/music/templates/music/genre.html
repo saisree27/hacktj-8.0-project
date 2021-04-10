@@ -14,11 +14,11 @@
     <p>genre page</p>
     <form action="{% url 'genre' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+    {{form.document}}
         <button class="btn btn-primary" type="submit">Submit</button>
     </form>
 
-    <p id="output">---------------</p>
+    <p id="output"></p>
 
     {% endblock %}
 </body>
