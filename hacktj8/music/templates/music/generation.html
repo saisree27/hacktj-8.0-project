@@ -71,9 +71,8 @@
             <!-- submit here -->
         </form>
         <div class="card-body text-center">
-            <audio id="player" controls="controls">
-                <source id="wavsrc">
-                </source>
+            <audio id="player" controls="controls" hidden>
+                <source id="wavsrc"></source>
             </audio>
         </div>
         <div id="output">{{message}}</div>
@@ -107,6 +106,7 @@
                                 console.log(response['file'])
                                 console.log(response['filetype'])
                                 $('#player').attr('src', "data:audio/" + response['filetype'] + ";base64," + response['file']);
+                                $('#player').attr('hidden', false)
                             }
                             // console.log(response)
                             console.log("success")

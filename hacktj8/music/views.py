@@ -12,6 +12,7 @@ import numpy as np
 import pickle
 import os
 import base64
+import random
 
 # Create your views here.
 
@@ -43,23 +44,22 @@ def generation(request):
         genre = request.POST.get('genre')
         print(genre)
         # audiofile = generate_music(file_sent) # assuming file is correct type
+
         pwd = os.path.dirname(__file__)
-        audiofile = pwd + '/static/audio/hiphop.wav'
+        path = pwd + '/static/audio/' + genre
         
+        audiofile = generation_helper(path)
+        # music continuation here
+
+        print(audiofile)
         enc = base64.b64encode(open(audiofile, "rb").read())
         fr = JsonResponse({'file': enc.decode('utf-8'), "filetype": audiofile.split(".")[-1]})
         return fr
     return render(request, 'music/generation.html', {'message': ''})
 
 
-
-
-
-
-
-
-
-
+def generation_helper(path):
+    return path + '/' + random.choice(os.listdir(path))
 
 def process_file_upload(file_sent):
     extension = file_sent.name.split(".")[-1]
@@ -185,14 +185,3 @@ def generate_music(genre):
     # switch cases
     audiofile = "woooooooooooooooo"
     return audiofile
-
-
-# def upload_file(request):
-#     if request.method == 'POST':
-#         form = UploadFileForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('upload_file')
-#     else:
-#         form = UploadFileForm()
-#     return render(request, 'music/genre.html', {'form': form})
