@@ -34,7 +34,8 @@
                     value="disco">Disco</button>
             </div>
             <div class="col-sm-1">
-                <button class="btn  btn-block btn-lg custom-background" onclick="buttonValue()" id="hiphop" value="hiphop">Hip
+                <button class="btn  btn-block btn-lg custom-background" onclick="buttonValue()" id="hiphop"
+                    value="hiphop">Hip
                     Hop</button>
             </div>
         </div>
@@ -49,7 +50,8 @@
                     value="metal">Metal</button>
             </div>
             <div class="col-sm-1">
-                <button class="btn  btn-block btn-lg custom-background" onclick="buttonValue()" id="pop" value="pop">Pop</button>
+                <button class="btn  btn-block btn-lg custom-background" onclick="buttonValue()" id="pop"
+                    value="pop">Pop</button>
             </div>
             <div class="col-sm-1">
                 <button class="btn  btn-block btn-lg custom-background" onclick="buttonValue()" id="reggae"
@@ -61,13 +63,22 @@
             </div>
         </div>
 
-        <form action="{% url 'generation' %}" method="post">
+        <form action="{% url 'generation' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <!-- submit here -->
-            <div class="form-group row justify-content-center mt-3">
+            <div class="form-group row justify-content-center">
                 <button class="btn btn-success btn-lg" id="submitButton" type="button">Submit</button>
             </div>
+            <!-- submit here -->
         </form>
+        <div class="card-body text-center">
+            <audio id="player" controls="controls">
+                <source id="wavsrc">
+                </source>
+            </audio>
+        </div>
+        <div id="output">{{message}}</div>
+
+
 
         <script>
             var focusedGenre = '';
@@ -77,20 +88,31 @@
             }
 
             var token = '{{csrf_token}}';
+
             $(document).ready(function () {
+
+                $('#id_document').bind('change', function () {
+                    var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName);
+                })
                 $('#submitButton').click(function (event) {
                     $.ajax({
                         headers: { "X-CSRFToken": token },
                         url: "{% url 'generation' %}",
                         method: 'POST',
                         data: {
-                            'genre': focusedGenre
+                            'genre': focusedGenre,
                         },
                         success: function (response) {
-                            console.log(response)
+                            if (response) {
+                                console.log(response['file'])
+                                console.log(response['filetype'])
+                                $('#player').attr('src', "data:audio/" + response['filetype'] + ";base64," + response['file']);
+                            }
+                            // console.log(response)
+                            console.log("success")
                         },
                         error: function (response) {
-                            console.log(response)
+                            console.log("error occured")
                         }
                     });
                     return false;

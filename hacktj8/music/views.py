@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileResponse
 from .forms import UploadFileForm
 from .models import File
 import random
 import tensorflow as tf
 physical_devices = tf.config.list_physical_devices('GPU') 
-tf.config.experimental.set_memory_growth(physical_devices[0], True)
+# tf.config.experimental.set_memory_growth(physical_devices[0], True)
 from sklearn.preprocessing import StandardScaler
 import librosa
 import numpy as np
 import pickle
 import os
+import base64
 
 # Create your views here.
 
@@ -22,7 +23,6 @@ def index(request):
 def genre(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-
         if 'document' in request.FILES and form.is_valid():
             file_sent = request.FILES['document']
             newfile = File(filename=file_sent.name + "_" + str(random.getrandbits(64)), document=file_sent)
@@ -39,11 +39,27 @@ def genre(request):
 
 def generation(request):
     if request.method == 'POST':
+        print(request.POST)
         genre = request.POST.get('genre')
         print(genre)
-        audiofile = generate_music(genre)
-        return HttpResponse(audiofile)
-    return render(request, 'music/generation.html')
+        # audiofile = generate_music(file_sent) # assuming file is correct type
+        pwd = os.path.dirname(__file__)
+        audiofile = pwd + '/static/audio/hiphop.wav'
+        
+        enc = base64.b64encode(open(audiofile, "rb").read())
+        fr = JsonResponse({'file': enc.decode('utf-8'), "filetype": audiofile.split(".")[-1]})
+        return fr
+    return render(request, 'music/generation.html', {'message': ''})
+
+
+
+
+
+
+
+
+
+
 
 def process_file_upload(file_sent):
     extension = file_sent.name.split(".")[-1]

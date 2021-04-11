@@ -1,3 +1,18 @@
+.btn-block {
+    font-size: 2vmin;
+}
+
+/* .position {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -200px;
+    
+    text-align: center;
+} */
+
 .custom-background:focus {
     background-color: green;
     border-radius: 50px;
@@ -76,4 +91,21 @@
     100% {
         background-position: 300px 0;
     }
+}
+
+#id_document {
+    width: 300px;
+    height: 70px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }
