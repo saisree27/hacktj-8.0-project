@@ -13,6 +13,7 @@ import pickle
 import os
 import base64
 import random
+import time
 
 # Create your views here.
 
@@ -50,7 +51,7 @@ def generation(request):
         
         audiofile = generation_helper(path)
         # music continuation here
-
+        time.sleep(2)
         print(audiofile)
         enc = base64.b64encode(open(audiofile, "rb").read())
         fr = JsonResponse({'file': enc.decode('utf-8'), "filetype": audiofile.split(".")[-1]})
