@@ -14,17 +14,20 @@ def index(request):
 def genre(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
+
+        if 'document' in request.FILES and form.is_valid():
             file = request.FILES['document']
-            newfile = File(filename=file.name + "_" + str(random.getrandbits(64)),document=file)
-            newfile.save()
+            newfile = File(filename=file.name + "_" + str(random.getrandbits(64)), document=file)
+            newfile.save() # save to sqlite
 
             process_file_upload(file)
             # form.save()
-            return redirect('genre')
+            return render(request, 'music/genre.html', {'message': 'File sent!', 'form': form})
+        else:
+            return render(request, 'music/genre.html', {'message': 'Attach a file before submitting!', 'form': form})
     else:
         form = UploadFileForm()
-    return render(request, 'music/genre.html', {'form': form})
+    return render(request, 'music/genre.html', {'message': '', 'form': form})
 
 def generation(request):
     if request.method == 'POST':

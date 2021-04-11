@@ -23,13 +23,12 @@
 
             <button class="btn btn-primary" id='submit' type="submit">Submit</button>
         </form>
+        <p id="output">{{message}}</p>
     </div>
 
-    <p id="output"></p>
-
     <script>
-        $('#id_document').bind('change', function() { 
-             var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName); 
+        $('#id_document').bind('change', function () {
+            var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName);
         })
     </script>
 
