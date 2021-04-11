@@ -1,0 +1,125 @@
+.btn-block {
+    font-size: 2vmin;
+}
+
+/* .position {
+    position: absolute;
+    width: 400px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -200px;
+    
+    text-align: center;
+} */
+
+.custom-background:focus {
+    background-color: green;
+    border-radius: 50px;
+}
+
+:root {
+    --background: #E5FFB3;
+    --background-accent: #DBF8A3;
+    --background-accent-2: #BDE66E;
+    --light: #e97527;
+    --dark: #b96109;
+    --text: #ffffff;
+  }
+
+.custom-background {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.custom-background:hover {
+    color: #fff;
+    cursor: pointer;
+    text-align:center;
+
+    background-color: green;
+    
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+
+}
+
+#submitButton {
+    margin-top: 50px;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background-color: var(--light);
+    width: 400px;
+    height: 70px;
+    z-index: 20;
+    border-radius: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    background-size: 100% 100%;
+    box-shadow: 0 0 0 7px var(--light) inset;
+    margin-bottom: 15px;
+}
+
+#submitButton:hover {
+    background-image: linear-gradient(
+        145deg,
+        transparent 10%,
+        var(--dark) 10% 20%,
+        transparent 20% 30%,
+        var(--dark) 30% 40%,
+        transparent 40% 50%,
+        var(--dark) 50% 60%,
+        transparent 60% 70%,
+        var(--dark) 70% 80%,
+        transparent 80% 90%,
+        var(--dark) 90% 100%
+    );
+    animation: background 3s linear infinite;
+}
+  
+@keyframes background {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 300px 0;
+    }
+}
+
+#id_document {
+    width: 300px;
+    height: 70px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.loader {
+    border: 2px solid #ffac3f;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

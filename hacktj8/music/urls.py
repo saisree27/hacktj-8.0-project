@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('genre', views.genre, name='genre'),
     path('generation', views.generation, name='generation'),
+    path('splitter', views.splitter, name='splitter'),
     # path('upload_file', views.upload_file, name='upload_file')
 ]
 

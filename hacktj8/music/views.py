@@ -58,6 +58,21 @@ def generation(request):
         return fr
     return render(request, 'music/generation.html', {'message': ''})
 
+def splitter(request):
+    if request.method == 'POST':
+        genre = request.POST.get('genre')
+        sortType = request.POST.get('sortType')
+
+        pwd = os.path.dirname(__file__)
+        path = pwd + '/static/outputs/' + genre
+
+        audiofile = generation_helper(path) # same logic
+
+        enc = base64.b64encode(open(audiofile, "rb").read())
+        fr = JsonResponse({'file': enc.decode('utf-8'), "filetype": audiofile.split(".")[-1]})
+        return fr
+    return render(request, 'music/splitter.html', {'message': ''})
+
 
 def generation_helper(path):
     return path + '/' + random.choice(os.listdir(path))
