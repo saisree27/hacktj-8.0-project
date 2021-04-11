@@ -1,5 +1,7 @@
 .vscode/
 .env
+hacktj8/media/
+db.sqlite3
 
 dataset
 

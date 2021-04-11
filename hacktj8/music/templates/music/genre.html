@@ -1,4 +1,4 @@
-{% extends 'music/base.html' %}
+{% include 'music/base.html' %}
 {% load static %}
 
 <!DOCTYPE html>
@@ -6,19 +6,34 @@
 <html lang="en">
 
 <head>
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/genre.css' %}">
 </head>
 
-<body>
+<body style="background-image:linear-gradient(90deg, #d53369 0%, #daae51 100%);">
     {% block content %}
-    <p>genre page</p>
-    <form action="{% url 'genre' %}" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-    {{form.document}}
-        <button class="btn btn-primary" type="submit">Submit</button>
-    </form>
+    <h1 style="text-align: center; margin-top: 100px; color: white;">Genre Detection</h1>
+    <h3 style="text-align: center; margin-top: 40px; color: white;">Acceptable file formats are <code>.wav</code>, <code>.mp3</code>, and <code>.ogg</code></h3>
+    <div class="position">
+        <form action="{% url 'genre' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="id_document" class="custom-file-upload" style="color: white">
+                Upload an audio file
+            </label>
+            <span id="file-selected"></span>
+            {{ form.document }}
 
-    <p id="output"></p>
+            <button class="btn btn-primary" id='submit' type="submit" style="margin-top:40px;">Submit</button>
+        </form>
+        <p id="output" style="color: white">{{message}}</p>
+    </div>
+
+    
+
+    <script>
+        $('#id_document').bind('change', function () {
+            var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName);
+        })
+    </script>
 
     {% endblock %}
 </body>
