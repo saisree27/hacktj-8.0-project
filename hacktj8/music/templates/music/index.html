@@ -136,7 +136,7 @@
           </h3>
           <p class="text-gray-600 mb-8">
             <br />
-            [space for describing alg]
+
             <br />
 
             Images from:
@@ -144,7 +144,8 @@
             <a class="text-pink-500 underline" href="https://undraw.co/">undraw.co</a>
           </p>
         </div>
-        <div class="w-full sm:w-1/2 p-6">
+        <div class="w-full sm:w-1/2 p-3">
+          <img src="{% static 'img/music_notes2.jpg' %}"></img>
           <!-- <svg class="w-full sm:h-64 mx-auto" viewBox="0 0 1177 598.5" xmlns="http://www.w3.org/2000/svg">
             <title>travel booking</title>
             <path transform="translate(-11.5 -150.75)"
@@ -268,7 +269,8 @@
       </div>
       <div class="flex flex-wrap flex-col-reverse sm:flex-row">
         <div class="w-full sm:w-1/2 p-6 mt-6">
-          <svg class="w-5/6 sm:h-64 mx-auto" viewBox="0 0 1176.60617 873.97852" xmlns="http://www.w3.org/2000/svg">
+          <img src="{% static 'img/djclipart.jpg' %}"></img>
+          <!-- <svg class="w-5/6 sm:h-64 mx-auto" viewBox="0 0 1176.60617 873.97852" xmlns="http://www.w3.org/2000/svg">
             <title>connected world</title>
             <path transform="translate(-11.697 -13.011)"
               d="m1095.7 225.46c-133.54-185.83-415.64-261.21-693.08-180.02-146.67 42.921-288.09 128.92-358.18 295.44-125.28 297.67 137.76 392.74 309.77 423.04 83.172 14.651 161.51 39.263 233.09 72.771 128.78 60.284 356.74 113.7 528.63-137.41 124.59-182.01 68.722-350.04-20.23-473.82z"
@@ -356,7 +358,7 @@
             <circle cx="780.7" cy="309" r="11.968" fill="#ff6347" />
             <circle cx="991.17" cy="607.78" r="11.968" fill="#ff6347" />
             <circle cx="600.35" cy="480.68" r="11.968" fill="#ff6347" />
-          </svg>
+          </svg> -->
         </div>
         <div class="w-full sm:w-1/2 p-6 mt-6">
           <div class="align-middle">
@@ -402,7 +404,7 @@
           <div class="flex items-center justify-center">
             <button
               class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Detect!
+              <a href="{% url 'genre' %}">Detect!</a>
             </button>
           </div>
         </div>
@@ -425,7 +427,7 @@
           <div class="flex items-center justify-center">
             <button
               class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Generate!
+              <a href="{% url 'genre' %}">Generate!</a>
             </button>
           </div>
         </div>
