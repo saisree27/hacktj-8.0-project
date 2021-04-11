@@ -13,7 +13,6 @@ import pickle
 import os
 import base64
 import random
-import time
 
 # Create your views here.
 
@@ -25,6 +24,7 @@ def index(request):
 def genre(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
+        print(request.FILES)
         if 'document' in request.FILES and form.is_valid():
             file_sent = request.FILES['document']
             newfile = File(filename=file_sent.name + "_" + str(random.getrandbits(64)), document=file_sent)
@@ -51,7 +51,7 @@ def generation(request):
         
         audiofile = generation_helper(path)
         # music continuation here
-        time.sleep(2)
+
         print(audiofile)
         enc = base64.b64encode(open(audiofile, "rb").read())
         fr = JsonResponse({'file': enc.decode('utf-8'), "filetype": audiofile.split(".")[-1]})

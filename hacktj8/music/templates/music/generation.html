@@ -75,64 +75,63 @@
                 <source id="wavsrc"></source>
             </audio>
         </div>
-        
+
         <div class="row justify-content-center">
             <div class="loader" id="loading_symbol" hidden></div>
         </div>
 
         <div id="output">{{message}}</div>
 
-
-
-        <script>
-            var focusedGenre = '';
-            function buttonValue() {
-                focusedGenre = document.activeElement.value;
-                console.log(focusedGenre);
-            }
-
-            var token = '{{csrf_token}}';
-
-            $(document).ready(function () {
-
-                $('#id_document').bind('change', function () {
-                    var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName);
-                })
-                $('#submitButton').click(function (event) {
-                    $.ajax({
-                        headers: { "X-CSRFToken": token },
-                        url: "{% url 'generation' %}",
-                        method: 'POST',
-                        data: {
-                            'genre': focusedGenre,
-                        },
-                        success: function (response) {
-                            if (response) {
-                                console.log(response['file'])
-                                console.log(response['filetype'])
-                                $('#player').attr('src', "data:audio/" + response['filetype'] + ";base64," + response['file']);
-                                $('#player').removeAttr('hidden');
-                                $('#loading_symbol').attr('hidden', true);
-                                // remove loading element
-                            }
-                            // console.log(response)
-                            console.log("success")
-                        },
-                        error: function (response) {
-                            console.log("error occured")
-                        }
-                    });
-                    $('#loading_symbol').removeAttr('hidden');
-                    $('#player').attr('hidden', true);
-                    // show loading element
-
-                    return false;
-                });
-            });
-
-        </script>
-
     </div>
+
+    <script>
+        var focusedGenre = '';
+        function buttonValue() {
+            focusedGenre = document.activeElement.value;
+            console.log(focusedGenre);
+        }
+
+        var token = '{{csrf_token}}';
+
+        $(document).ready(function () {
+
+            $('#id_document').bind('change', function () {
+                var fileName = ''; fileName = $(this).val(); $('#file-selected').html(fileName);
+            })
+            $('#submitButton').click(function (event) {
+                $.ajax({
+                    headers: { "X-CSRFToken": token },
+                    url: "{% url 'generation' %}",
+                    method: 'POST',
+                    data: {
+                        'genre': focusedGenre,
+                    },
+                    success: function (response) {
+                        if (response) {
+                            console.log(response['file'])
+                            console.log(response['filetype'])
+                            $('#player').attr('src', "data:audio/" + response['filetype'] + ";base64," + response['file']);
+                            $('#player').removeAttr('hidden');
+                            $('#loading_symbol').attr('hidden', true);
+                            // remove loading element
+                        }
+                        // console.log(response)
+                        console.log("success")
+                    },
+                    error: function (response) {
+                        console.log("error occured")
+                    }
+                });
+                $('#loading_symbol').removeAttr('hidden');
+                $('#player').attr('hidden', true);
+                // show loading element
+
+                return false;
+            });
+        });
+
+    </script>
+
 
 
     {% endblock %}

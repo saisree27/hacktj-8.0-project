@@ -1,4 +1,4 @@
-.position {
+/* .position {
     position: absolute;
     width: 400px;
     height: 300px;
@@ -7,7 +7,7 @@
     margin: -150px 0 0 -200px;
     
     text-align: center;
-}
+} */
 
   :root {
     --background: #E5FFB3;
@@ -18,7 +18,7 @@
     --text: #ffffff;
   }
 
-  #submit {
+  #submitButton {
     display: block;
     cursor: pointer;
     outline: none;
@@ -36,7 +36,7 @@
     margin-bottom: 15px;
 }
 
-#submit:hover {
+#submitButton:hover {
     background-image: linear-gradient(
         145deg,
         transparent 10%,
@@ -79,3 +79,17 @@ input[type="file"] {
     padding: 6px 12px;
     cursor: pointer;
 }
+
+.loader {
+    border: 2px solid #ffac3f;
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
