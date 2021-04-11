@@ -4,7 +4,7 @@
     height: 300px;
     top: 50%;
     left: 50%;
-    margin: -200px 0 0 -200px;
+    margin: -150px 0 0 -200px;
     
     text-align: center;
 }
@@ -13,9 +13,9 @@
     --background: #E5FFB3;
     --background-accent: #DBF8A3;
     --background-accent-2: #BDE66E;
-    --light: #92DE34;
-    --dark: #69BC22;
-    --text: #025600;
+    --light: #e97527;
+    --dark: #b96109;
+    --text: #ffffff;
   }
 
   #submit {
@@ -74,6 +74,7 @@ input[type="file"] {
 
 .custom-file-upload {
     border: 1px solid #ccc;
+    border-radius: 5px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
